@@ -1,24 +1,28 @@
 @extends('layouts.plantillabase')
 
 @section('contenido')
-    <a href="cursos/create" class="btn btn-primary">CREAR</a>
+    <a href="expertos/create" class="btn btn-primary">CREAR</a>
 
         <table class="table table-hover table-striped mt-4 align-middle">
         <thead class="table-dark">
             <tr class="text-center">
+                <th scope="col">ID</th>
                 <th scope="col">NOMBRE</th>
-                <th scope="col">UNIDAD ACADEMICA</th>
+                <th scope="col">CEDULA</th>
+                <th scope="col">CORREO</th>
                 <th scope="col">ACCIONES</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($cursos as $curso)
+            @foreach ($expertos as $experto)
             <tr class="text-center">
-                <td>{{$curso->nombre}}</td>
-                <td>{{$curso->unidad_academica}}</td>
+                <td>{{$experto->id}}</td>
+                <td>{{$experto->nombre}}</td>
+                <td>{{$experto->cedula}}</td>
+                <td>{{$experto->email}}</td>
                 <td>
-                    <form action="{{ route ('cursos.destroy', $curso->id)}}" method="POST" id="formulario-experto-eliminar">
-                        <a href="/cursos/{{$curso->id}}/edit" class="btn btn-info">Editar</a>
+                    <form action="{{ route ('expertos.destroy', $experto->id)}}" method="POST" id="formulario-eliminar">
+                        <a href="/expertos/{{$experto->id}}/edit" class="btn btn-info">Editar</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Borrar</button>
@@ -44,7 +48,7 @@
 @endif
 <script>
 
-        document.getElementById('formulario-experto-eliminar').addEventListener('submit',function(e){
+        document.getElementById('formulario-eliminar').addEventListener('submit',function(e){
             e.preventDefault();
                     Swal.fire({
                         title: 'Estas seguro?',

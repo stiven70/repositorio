@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Experto;
 use Illuminate\Http\Request;
 
 class ExpertoController extends Controller
@@ -13,7 +14,8 @@ class ExpertoController extends Controller
      */
     public function index()
     {
-        //
+        $expertos = Experto::all();
+        return view('experto.index')->with('expertos', $expertos);
     }
 
     /**
@@ -23,7 +25,7 @@ class ExpertoController extends Controller
      */
     public function create()
     {
-        //
+        return view('experto.create');
     }
 
     /**
@@ -34,7 +36,15 @@ class ExpertoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $expertos = new Experto();
+
+        $expertos->nombre = $request->get('nombre');
+        $expertos->cedula = $request->get('cedula');
+        $expertos->email = $request->get('email');
+
+        $expertos->save();
+
+        return  redirect('/expertos');
     }
 
     /**
@@ -56,7 +66,8 @@ class ExpertoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $experto = Experto::find($id);
+        return view('experto.edit')->with('experto', $experto);
     }
 
     /**
@@ -68,7 +79,16 @@ class ExpertoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $experto = Experto::find($id);
+
+        $experto->nombre = $request->get('nombre');
+        $experto->cedula = $request->get('cedula');
+        $experto->email = $request->get('email');
+
+
+        $experto->save();
+
+        return  redirect('/expertos');
     }
 
     /**
@@ -79,6 +99,10 @@ class ExpertoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $experto = Experto::find($id);
+        $experto->delete();
+
+
+        return  redirect('/expertos')->with('eliminar', 'ok');
     }
 }
