@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Estructura;
 use Illuminate\Http\Request;
 
 class EstructuraController extends Controller
@@ -13,7 +14,8 @@ class EstructuraController extends Controller
      */
     public function index()
     {
-        //
+        $estructuras = Estructura::all();
+        return view('estructura.index')->with('estructuras', $estructuras);
     }
 
     /**
@@ -23,7 +25,7 @@ class EstructuraController extends Controller
      */
     public function create()
     {
-        //
+        return view('estructura.create');
     }
 
     /**
@@ -34,7 +36,13 @@ class EstructuraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $estructuras = new Estructura();
+
+        $estructuras->nombre = $request->get('nombre');
+
+        $estructuras->save();
+
+        return  redirect('/estructuras');
     }
 
     /**
@@ -56,7 +64,8 @@ class EstructuraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estructura = Estructura::find($id);
+        return view('estructura.edit')->with('estructura', $estructura);
     }
 
     /**
@@ -68,7 +77,13 @@ class EstructuraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estructura = Estructura::find($id);
+
+        $estructura->nombre = $request->get('nombre');
+
+        $estructura->save();
+
+        return  redirect('/estructuras');
     }
 
     /**
@@ -79,6 +94,10 @@ class EstructuraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $estructura = Estructura::find($id);
+        $estructura->delete();
+
+
+        return  redirect('/estructuras')->with('eliminar', 'ok');
     }
 }
