@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Estructura extends Model
 {
     use HasFactory;
+    //Relacion uno a muchos
+    public function podcast()
+    {
+        return $this->hasMany('App\Models\Podcast');
+    }
 }

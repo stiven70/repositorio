@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Experto extends Model
 {
     use HasFactory;
+    //Relacion muchos a muchos
+    public function podcast()
+    {
+        return $this->belongsToMany('App\Models\Podcast');
+    }
 }

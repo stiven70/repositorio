@@ -17,11 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('podcasts', 'App\Http\Controllers\PodcastController');
-
-
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    Route::resource('podcasts', 'App\Http\Controllers\PodcastController');
     Route::resource('cursos', 'App\Http\Controllers\CursoController');
     Route::resource('estructuras', 'App\Http\Controllers\EstructuraController');
     Route::resource('expertos', 'App\Http\Controllers\ExpertoController');

@@ -47,7 +47,9 @@ class PodcastController extends Controller
      */
     public function show($id)
     {
-        //
+        $podcast = Podcast::find($id);
+        return view('podcast.show')->with('podcast', $podcast);
+
     }
 
     /**
