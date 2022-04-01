@@ -33,7 +33,7 @@
                 <td>{{$podcast->duracion}}</td>
                 <td>{{$podcast->descripcion}}</td>
                 <td>
-                    <a href="/podcasts/show/{{$podcast->id}}" class="btn btn-primary">Mostrar</a>
+                    <a href="/podcasts/{{$podcast->id}}" class="btn btn-primary">Mostrar</a>
                     <a href="#" class="btn btn-warning">Editar</a>
                     <button class="btn btn-danger">Borrar</button>
                 </td>
