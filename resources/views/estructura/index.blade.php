@@ -17,7 +17,7 @@
                 <td>{{$estructura->id}}</td>
                 <td>{{$estructura->nombre}}</td>
                 <td>
-                    <form action="{{ route ('estructuras.destroy', $estructura->id)}}" method="POST" id="formulario-estructura-eliminar">
+                    <form action="{{ route ('estructuras.destroy', $estructura->id)}}" method="POST">
                         <a href="/estructuras/{{$estructura->id}}/edit" class="btn btn-info">Editar</a>
                         @csrf
                         @method('DELETE')

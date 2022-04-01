@@ -1,10 +1,10 @@
 @extends('layouts.plantillabase')
 
 @section('contenido')
-    <a href="podcast/create" class="btn btn-primary">CREAR</a>
+    <a href="podcast/create" class="btn btn-success">CREAR</a>
 
         <table class="table table-hover table-striped mt-4 align-middle">
-        <thead class="table-dark">
+        <thead class="table-primary">
             <tr class="text-center">
                 <th scope="col">ID</th>
                 <th scope="col">TITULO</th>

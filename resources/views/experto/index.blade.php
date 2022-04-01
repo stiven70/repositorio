@@ -21,7 +21,7 @@
                 <td>{{$experto->cedula}}</td>
                 <td>{{$experto->email}}</td>
                 <td>
-                    <form action="{{ route ('expertos.destroy', $experto->id)}}" method="POST" id="formulario-eliminar">
+                    <form action="{{ route ('expertos.destroy', $experto->id)}}" method="POST">
                         <a href="/expertos/{{$experto->id}}/edit" class="btn btn-info">Editar</a>
                         @csrf
                         @method('DELETE')
@@ -32,39 +32,5 @@
             @endforeach
         </tbody>
     </table>
-
-@endsection
-
-@section('js')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (session('eliminar') == 'ok')
-    <script>
-        Swal.fire(
-                        'Eliminado!',
-                        'Su registro ha sido eliminado.',
-                        'success'
-                    )
-    </script>
-@endif
-<script>
-
-        document.getElementById('formulario-eliminar').addEventListener('submit',function(e){
-            e.preventDefault();
-                    Swal.fire({
-                        title: 'Estas seguro?',
-                        text: "No podrás revertir esto!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si, eliminarlo!'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        this.submit();
-                    }
-                })
-        });
-
-    </script>
 
 @endsection

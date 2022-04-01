@@ -17,7 +17,7 @@
                 <td>{{$curso->nombre}}</td>
                 <td>{{$curso->unidad_academica}}</td>
                 <td>
-                    <form action="{{ route ('cursos.destroy', $curso->id)}}" method="POST" id="formulario-experto-eliminar">
+                    <form action="{{ route ('cursos.destroy', $curso->id)}}" method="POST">
                         <a href="/cursos/{{$curso->id}}/edit" class="btn btn-info">Editar</a>
                         @csrf
                         @method('DELETE')
@@ -28,39 +28,5 @@
             @endforeach
         </tbody>
     </table>
-
-@endsection
-
-@section('js')
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-@if (session('eliminar') == 'ok')
-    <script>
-        Swal.fire(
-                        'Eliminado!',
-                        'Su registro ha sido eliminado.',
-                        'success'
-                    )
-    </script>
-@endif
-<script>
-
-        document.getElementById('formulario-experto-eliminar').addEventListener('submit',function(e){
-            e.preventDefault();
-                    Swal.fire({
-                        title: 'Estas seguro?',
-                        text: "No podrás revertir esto!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Si, eliminarlo!'
-                    }).then((result) => {
-                    if (result.isConfirmed) {
-                        this.submit();
-                    }
-                })
-        });
-
-    </script>
 
 @endsection
