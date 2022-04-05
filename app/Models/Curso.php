@@ -12,6 +12,6 @@ class Curso extends Model
     //Relacion muchos a muchos
     public function podcast()
     {
-        return $this->belongsToMany('App\Models\Podcast');
+        return $this->belongsToMany(Podcast::class, 'podcast_curso');
     }
 }

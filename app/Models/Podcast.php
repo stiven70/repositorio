@@ -10,19 +10,19 @@ class Podcast extends Model
     use HasFactory;
 
     //Relacion uno a muchos (inversa)
-    public function audio()
+    public function estructuras()
     {
-        return $this->belongsTo('App\Models\Estructura');
+        return $this->belongsTo(Estructura::class, 'estructura_id');
     }
 
     //Relacion muchos a muchos
     public function cursos()
     {
-        return $this->belongsToMany('App\Models\Curso');
+        return $this->belongsToMany(Curso::class, 'podcast_curso');
     }
 
     public function expertos()
     {
-        return $this->belongsToMany('App\Models\Experto');
+        return $this->belongsToMany(Experto::class,'podcast_experto');
     }
 }

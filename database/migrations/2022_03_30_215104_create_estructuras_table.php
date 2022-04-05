@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('estructuras', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('');
             $table->timestamps();
         });
     }

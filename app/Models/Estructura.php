@@ -9,8 +9,8 @@ class Estructura extends Model
 {
     use HasFactory;
     //Relacion uno a muchos
-    public function podcast()
+    public function podcasts()
     {
-        return $this->hasMany('App\Models\Podcast');
+        return $this->hasMany(Podcast::class, 'id');
     }
 }
