@@ -8,8 +8,8 @@
 @section('contenido')
     <a href="cursos/create" class="btn btn-success mb-3">CREAR</a>
 
-        <table id="cursos" class="table table-hover table-striped table-bordered mt-4 align-middle" style="width: 100%">
-        <thead class="table-dark">
+        <table id="cursos" class="table table-hover table-striped mt-4 align-middle">
+        <thead class="table-primary">
             <tr class="text-center">
                 <th scope="col">NOMBRE</th>
                 <th scope="col">UNIDAD ACADEMICA</th>

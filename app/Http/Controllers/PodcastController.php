@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Podcast;
+use App\Models\Curso;
+use App\Models\Estructura;
+use App\Models\Experto;
+use App\Models\PodcastCurso;
+use App\Models\PodcastExperto;
 
 
 
@@ -27,7 +32,11 @@ class PodcastController extends Controller
      */
     public function create()
     {
-        //
+        $cursos = Curso::all();
+        $expertos = Experto::all();
+        $podcasts = Podcast::all();
+        $estructuras = Estructura::all();
+        return view('podcast.create', compact('cursos', 'expertos', 'podcasts', 'estructuras'));
     }
 
     /**
@@ -38,7 +47,25 @@ class PodcastController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $podcasts = new Podcast();
+        $expertos= new PodcastExperto();
+        $cursos= new PodcastCurso();
+
+        $podcasts->titulo = $request->get('titulo');
+        $podcasts->fecha = $request->get('fecha');
+        $podcasts->enlace_ruta = $request->get('enlaceRuta');
+        $podcasts->cod_archivo = $request->get('codigo');
+        $podcasts->enlace_guion = $request->get('enlaceGuion');
+        $podcasts->duracion = $request->get('duracion');
+        $podcasts->descripcion = $request->get('descripcion');
+        $podcasts->estructura_id = $request->get('estructura');
+
+        // $curso->enlace_ruta = $request->get('email');
+
+        $podcasts->save();
+
+        return  redirect('/podcasts');
+
     }
 
     /**
@@ -62,7 +89,10 @@ class PodcastController extends Controller
      */
     public function edit($id)
     {
-        //
+        $podcast = Podcast::find($id);
+        $estructuras = Estructura::all();
+
+        return view('podcast.edit', compact('podcast', 'estructuras'));
     }
 
     /**
@@ -74,7 +104,21 @@ class PodcastController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $podcast = Podcast::find($id);
+
+        $podcast->titulo = $request->get('titulo');
+        $podcast->fecha = $request->get('fecha');
+        $podcast->enlace_ruta = $request->get('enlaceRuta');
+        $podcast->cod_archivo = $request->get('codigo');
+        $podcast->enlace_guion = $request->get('enlaceGuion');
+        $podcast->duracion = $request->get('duracion');
+        $podcast->descripcion = $request->get('descripcion');
+        $podcast->estructura_id = $request->get('estructura');
+
+
+        $podcast->save();
+
+        return  redirect('/podcasts');
     }
 
     /**
@@ -85,6 +129,10 @@ class PodcastController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $podcast = Podcast::find($id);
+        $podcast->delete();
+
+
+        return  redirect('/podcasts')->with('eliminar', 'ok');
     }
 }

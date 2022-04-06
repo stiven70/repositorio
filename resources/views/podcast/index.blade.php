@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-    <a href="podcast/create" class="btn btn-success mb-3">CREAR</a>
+    <a href="podcasts/create" class="btn btn-success mb-3">CREAR</a>
 
         <table id="podcast" class="table table-hover table-striped mt-4 align-middle">
         <thead class="table-primary">
@@ -33,9 +33,13 @@
                 <td>{{$podcast->duracion}}</td>
                 <td>{{$podcast->descripcion}}</td>
                 <td>
-                    <a href="/podcasts/{{$podcast->id}}" class="btn btn-primary">Mostrar</a>
-                    <a href="#" class="btn btn-warning">Editar</a>
-                    <button class="btn btn-danger">Borrar</button>
+                    <form action="{{ route ('podcasts.destroy', $podcast->id)}}" method="POST">
+                        <a href="/podcasts/{{$podcast->id}}" class="btn btn-primary">Mostrar</a>
+                        <a href="/podcasts/{{$podcast->id}}/edit" class="btn btn-warning">Editar</a>
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">Borrar</button>
+                    </form>
                 </td>
             @endforeach
         </tbody>
