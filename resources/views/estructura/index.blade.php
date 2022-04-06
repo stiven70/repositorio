@@ -1,39 +1,36 @@
-@extends('layouts.plantillabase')
+<x-app-layout>
+    <div class="container-fluid mt-5">
 
-@section('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-@endsection
+        <a href="estructuras/create" class="btn btn-success mb-3">CREAR</a>
 
-@section('contenido')
-    <a href="estructuras/create" class="btn btn-success mb-3">CREAR</a>
+            <table id="estructuras" class="table table-hover table-striped mt-4 align-middle">
+            <thead class="table-primary">
+                <tr class="text-center">
+                    <th scope="col">ID</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($estructuras as $estructura)
+                <tr class="text-center">
+                    <td>{{$estructura->id}}</td>
+                    <td>{{$estructura->nombre}}</td>
+                    <td>
+                        <form action="{{ route ('estructuras.destroy', $estructura->id)}}" method="POST">
+                            <a href="/estructuras/{{$estructura->id}}/edit" class="btn btn-info">Editar</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-        <table id="estructuras" class="table table-hover table-striped mt-4 align-middle">
-        <thead class="table-primary">
-            <tr class="text-center">
-                <th scope="col">ID</th>
-                <th scope="col">NOMBRE</th>
-                <th scope="col">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($estructuras as $estructura)
-            <tr class="text-center">
-                <td>{{$estructura->id}}</td>
-                <td>{{$estructura->nombre}}</td>
-                <td>
-                    <form action="{{ route ('estructuras.destroy', $estructura->id)}}" method="POST">
-                        <a href="/estructuras/{{$estructura->id}}/edit" class="btn btn-info">Editar</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Borrar</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
 
-    @section('js')
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
@@ -67,7 +64,5 @@
             });
         } );
     </script>
-@endsection
-
-@endsection
+</x-app-layout>
 
