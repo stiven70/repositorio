@@ -21,16 +21,21 @@
                             <strong>Estructura:</strong>
                             {{$podcast->estructuras->nombre}}
                         </div>
-                        @foreach ($podcast->cursos as $curso)
-                        <div class="form-group">
-                            <strong>Curso:</strong>
-                            {{$curso->nombre}}
-                        </div>
-                        @endforeach
-                        @foreach ($podcast->expertos as $experto)
                         <div class="form-group">
                             <strong>Experto:</strong>
-                            {{$experto->nombre}}
+                            {{$podcast->expertos->nombre}}
                         </div>
-                        @endforeach
+                        <div class="form-group">
+                            <strong>Curso:</strong>
+                            @foreach ($podcast->cursos as $curso)
+                                {{$curso->nombre}}
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            <strong>Unidad Academica:</strong>
+                            @foreach ($podcast->cursos as $curso)
+                                {{$curso->unidad_academica}}
+                            @endforeach
+                        </div>
+
 @endsection

@@ -14,6 +14,10 @@ class Podcast extends Model
     {
         return $this->belongsTo(Estructura::class, 'estructura_id');
     }
+    public function expertos()
+    {
+        return $this->belongsTo(Experto::class, 'experto_id');
+    }
 
     //Relacion muchos a muchos
     public function cursos()
@@ -21,8 +25,4 @@ class Podcast extends Model
         return $this->belongsToMany(Curso::class, 'podcast_curso');
     }
 
-    public function expertos()
-    {
-        return $this->belongsToMany(Experto::class,'podcast_experto');
-    }
 }

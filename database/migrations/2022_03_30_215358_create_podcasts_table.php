@@ -28,6 +28,14 @@ return new class extends Migration
             ->constrained('estructuras')
             ->cascadeOnDelete()
             ->nullOnDelete();
+
+
+            $table->foreignId('experto_id')
+            ->nullable()
+            ->constrained('expertos')
+            ->cascadeOnDelete()
+            ->nullOnDelete();
+            
             $table->timestamps();
         });
     }

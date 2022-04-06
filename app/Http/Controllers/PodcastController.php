@@ -8,7 +8,7 @@ use App\Models\Curso;
 use App\Models\Estructura;
 use App\Models\Experto;
 use App\Models\PodcastCurso;
-use App\Models\PodcastExperto;
+
 
 
 
@@ -48,8 +48,7 @@ class PodcastController extends Controller
     public function store(Request $request)
     {
         $podcasts = new Podcast();
-        $expertos= new PodcastExperto();
-        $cursos= new PodcastCurso();
+
 
         $podcasts->titulo = $request->get('titulo');
         $podcasts->fecha = $request->get('fecha');
@@ -59,6 +58,7 @@ class PodcastController extends Controller
         $podcasts->duracion = $request->get('duracion');
         $podcasts->descripcion = $request->get('descripcion');
         $podcasts->estructura_id = $request->get('estructura');
+        $podcasts->experto_id = $request->get('experto');
 
         // $curso->enlace_ruta = $request->get('email');
 
@@ -91,8 +91,9 @@ class PodcastController extends Controller
     {
         $podcast = Podcast::find($id);
         $estructuras = Estructura::all();
+        $expertos = Experto::all();
 
-        return view('podcast.edit', compact('podcast', 'estructuras'));
+        return view('podcast.edit', compact('podcast', 'estructuras', 'expertos'));
     }
 
     /**
@@ -114,6 +115,7 @@ class PodcastController extends Controller
         $podcast->duracion = $request->get('duracion');
         $podcast->descripcion = $request->get('descripcion');
         $podcast->estructura_id = $request->get('estructura');
+        $podcast->experto_id = $request->get('experto');
 
 
         $podcast->save();
